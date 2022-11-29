@@ -18,7 +18,7 @@ import com.parking.web.app.model.Profesor;
 import com.parking.web.app.repository.ProfesorRepository;
 
 
-@CrossOrigin(origins = "http://localhost:8081")
+//@CrossOrigin(origins = "http://localhost:4200") //http://localhost:4200" -Angular o "*" cualquier origen
 @RestController
 @RequestMapping("/api")
 public class ProfesorController {
@@ -51,8 +51,7 @@ public class ProfesorController {
 	public ResponseEntity<Profesor> createProfesor(@RequestBody Profesor profesor) {
 
 		try {
-			Profesor _profesor = profesorRepository.save(new Profesor(profesor.getCedula(), profesor.getNombre(),
-					profesor.getApellido(), profesor.getMateria()));
+			Profesor _profesor = profesorRepository.save(new Profesor(profesor.getApellido(), profesor.getCedula(), profesor.getMateria(),profesor.getNombre()));
 			return new ResponseEntity<>(_profesor, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
